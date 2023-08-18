@@ -23,3 +23,38 @@
 //Hint: When dealing with a form submission that takes an event variable as a parameter, use e.preventDefault()
 //      (or event.preventDefault() depending on the name of the variable) to prevent the page
 //      from refreshing when a form is submitted. Do all your checks after that line.
+function validateForm(e) {
+    e.preventDefault();
+  
+    const nameInput = document.querySelector("#name");
+    const emailInput = document.querySelector("#email");
+    const passwordInput = document.querySelector("#password");
+  
+    if (nameInput.value.trim() === "") {
+      alert("Please enter your name.");
+      return false;
+    }
+  
+    if (emailInput.value.indexOf("@") === -1) {
+      alert("Please enter a valid email address.");
+      return false;
+    }
+  
+    if (passwordInput.value.trim() === "") {
+      alert("Please enter a password.");
+      return false;
+    }
+  
+    if (passwordInput.value.length < 8) {
+      alert("Your password must be at least 8 characters long.");
+      return false;
+    }
+  
+    return true;
+  }
+
+  const userForm = document.querySelector("#userForm");
+  userForm.addEventListener("submit", function(e) {
+    validateForm(e);
+  });
+  
